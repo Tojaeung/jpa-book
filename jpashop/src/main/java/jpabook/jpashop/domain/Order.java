@@ -48,7 +48,7 @@ public class Order {
         member.getOrders().add(this);
     }
 
-    public void setOrderItem(OrderItem orderItem) {
+    public void addOrderItem(OrderItem orderItem) {
         orderItems.add(orderItem);
         orderItem.setOrder(this);
     }
@@ -64,9 +64,10 @@ public class Order {
         order.setMember(member);
         order.setDelivery(delivery);
         for (OrderItem orderItem : orderItems) {
-            order.setStatus(OrderStatus.ORDER);
-            order.setOrderDate(LocalDateTime.now());
+            order.addOrderItem(orderItem);
         }
+        order.setStatus(OrderStatus.ORDER);
+        order.setOrderDate(LocalDateTime.now());
         return order;
     }
 
